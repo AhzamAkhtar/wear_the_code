@@ -11,9 +11,7 @@ export default function Home() {
         <link rel="icon" href="/vercel.svg" />
       </Head>
 
-      <div>
-        <Image src='/shirting-fabric.png' alt='' height={350} width={1500}/>
-      </div>
+      
       <section className="text-gray-600 body-font">
   <div className="container px-5 py-24 mx-auto">
     <div className="flex flex-wrap w-full mb-20 flex-col items-center text-center">

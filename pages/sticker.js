@@ -1,14 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
-const mugs = () => {
+const sticker = () => {
   return (
     <div>
-      <section class="text-gray-600 body-font">
+        <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap -m-4">
       <Link href={"product/wear-the-code"}><div class="lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-2">
         <a class="block relative rounded overflow-hidden">
-          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/71AXHXRsrDL._SX522_.jpg"/>
+          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/A1B3JXT3oBL._SX522_.jpg"/>
         </a>
         <div class="mt-4 text-center md:text-left">
           <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -19,7 +19,7 @@ const mugs = () => {
       </Link> 
       <Link href={"product/wear-the-code"}><div class="lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-2">
         <a class="block relative rounded overflow-hidden">
-          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/71AXHXRsrDL._SX522_.jpg"/>
+          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/A1B3JXT3oBL._SX522_.jpg"/>
         </a>
         <div class="mt-4 text-center md:text-left">
           <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -30,7 +30,7 @@ const mugs = () => {
       </Link> 
       <Link href={"product/wear-the-code"}><div class="lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-2">
         <a class="block relative rounded overflow-hidden">
-          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/71AXHXRsrDL._SX522_.jpg"/>
+          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/A1B3JXT3oBL._SX522_.jpg"/>
         </a>
         <div class="mt-4 text-center md:text-left">
           <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -41,7 +41,7 @@ const mugs = () => {
       </Link> 
       <Link href={"product/wear-the-code"}><div class="lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-2">
         <a class="block relative rounded overflow-hidden">
-          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/71AXHXRsrDL._SX522_.jpg"/>
+          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/A1B3JXT3oBL._SX522_.jpg"/>
         </a>
         <div class="mt-4 text-center md:text-left">
           <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -52,7 +52,7 @@ const mugs = () => {
       </Link> 
       <Link href={"product/wear-the-code"}><div class="lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-2">
         <a class="block relative rounded overflow-hidden">
-          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/71AXHXRsrDL._SX522_.jpg"/>
+          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/A1B3JXT3oBL._SX522_.jpg"/>
         </a>
         <div class="mt-4 text-center md:text-left">
           <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -63,7 +63,7 @@ const mugs = () => {
       </Link> 
       <Link href={"/product/wear-the-code"}><div class="lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-2">
         <a class="block relative rounded overflow-hidden">
-          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/71AXHXRsrDL._SX522_.jpg"/>
+          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/A1B3JXT3oBL._SX522_.jpg"/>
         </a>
         <div class="mt-4 text-center md:text-left">
           <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -74,7 +74,7 @@ const mugs = () => {
       </Link>
       <Link href={"/product/wear-the-code"}><div class="lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-2">
         <a class="block relative rounded overflow-hidden">
-          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/71AXHXRsrDL._SX522_.jpg"/>
+          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/A1B3JXT3oBL._SX522_.jpg"/>
         </a>
         <div class="mt-4 text-center md:text-left">
           <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -85,7 +85,7 @@ const mugs = () => {
       </Link>
       <Link href={"/product/wear-the-code"}><div class="lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer shadow-lg m-2">
         <a class="block relative  rounded overflow-hidden">
-          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/71AXHXRsrDL._SX522_.jpg"/>
+          <img alt="ecommerce" class="m-auto md:mx-0 h-[30vh] md:h-[36vh] block" src="https://m.media-amazon.com/images/I/A1B3JXT3oBL._SX522_.jpg"/>
         </a>
         <div class="mt-4 text-center md:text-left">
           <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
@@ -101,4 +101,4 @@ const mugs = () => {
   )
 }
 
-export default mugs
+export default sticker
