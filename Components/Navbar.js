@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {MdOutlineShoppingCart,} from 'react-icons/md'
 import {AiFillCloseCircle,AiOutlinePlusCircle,AiOutlineMinusCircle} from 'react-icons/ai'
+import {BsFillBagCheckFill} from 'react-icons/bs'
 const Navbar = () => {
   const toggleCart=()=>{
     if(ref.current.classList.contains('translate-x-full')){
@@ -100,6 +101,7 @@ const Navbar = () => {
         </div>
         </li>
       </ol>
+      <button className='flex mt-16 text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none'><BsFillBagCheckFill className="m-1"/>Checkout</button>
     </div>
    </div>
   )
