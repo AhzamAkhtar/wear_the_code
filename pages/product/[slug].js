@@ -1,7 +1,11 @@
+import mongoose from "mongoose";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Product from "../../modals/Product";
 
-const Post = ({addToCart}) => {
+const Post = ({addToCart, product , variants}) => {
+  console.log(product)
+  console.log(variants)
   const router = useRouter();
   const { slug } = router.query;
   const [pin,setPin] = useState()
@@ -21,6 +25,12 @@ const Post = ({addToCart}) => {
 const onChangePin=(e)=>{
     setPin(e.target.value)
 }
+const [color,setColor] = useState(product.color)
+const [size,setSize] = useState(product.size)
+const refreshVariants=(newsize , newcolor)=>{
+  let url = `http://localhost:3000/product/${variants[newcolor][newsize]['slug']}`
+  window.location = url
+}
   return (
     <>
       <section class="text-gray-600 body-font overflow-hidden">
@@ -29,7 +39,7 @@ const onChangePin=(e)=>{
             <img
               alt="ecommerce"
               class="lg:w-1/2 w-full lg:h-auto px-24 object-cover object-top rounded"
-              src="https://m.media-amazon.com/images/I/41JEBpNuz5L._UY741_.jpg"
+              src={product.img}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 class="text-sm title-font text-gray-500 tracking-widest">
@@ -135,30 +145,33 @@ const onChangePin=(e)=>{
                     </svg>
                   </a>
                 </span>
-              </div>
+              </div> 
               <p class="leading-relaxed">
                 Fam locavore kickstarter distillery. Mixtape chillwave tumeric
                 sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo
                 juiceramps cornhole raw denim forage brooklyn. Everyday carry +1
                 seitan poutine tumeric. Gastropub blue bottle austin listicle
                 pour-over, neutra jean shorts keytar banjo tattooed umami
-                cardigan.
+                cardigan.  
               </p>
               <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div class="flex">
                   <span class="mr-3">Color</span>
-                  <button class="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>
-                  <button class="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
-                  <button class="border-2 border-gray-300 ml-1 bg-indigo-500 rounded-full w-6 h-6 focus:outline-none"></button>
+                  {Object.keys(variants).includes("red") && Object.keys(variants["red"]).includes(size) && <button onClick={()=>{refreshVariants(size , "red")}}  class={`border-2   bg-red-500 rounded-full w-6 h-6  ${color=="red"?'border-black':'border-gray-300'}`}></button>}
+                  {Object.keys(variants).includes("yellow") && Object.keys(variants["yellow"]).includes(size) && <button onClick={()=>{refreshVariants(size , "yellow")}}  class={`border-2  bg-yellow-500 rounded-full w-6 h-6  ${color=="yellow"?'border-black':'border-gray-300'}`}></button>}
+                  {Object.keys(variants).includes("orange") && Object.keys(variants["orange"]).includes(size) && <button onClick={()=>{refreshVariants(size , "orange")}}  class={`border-2  bg-orange-500 rounded-full w-6 h-6  ${color=="orange"?'border-black':'border-gray-300'}`}></button>}
+                  {Object.keys(variants).includes("pink") && Object.keys(variants["pink"]).includes(size) && <button onClick={()=>{refreshVariants(size , "pink")}}  class={`border-2  bg-pink-500 rounded-full w-6 h-6  ${color=="pink"?'border-black':'border-gray-300'}`}></button>}
+                  {Object.keys(variants).includes("blue") && Object.keys(variants["blue"]).includes(size) && <button onClick={()=>{refreshVariants(size , "blue")}}  class={`border-2  bg-blue-500 rounded-full w-6 h-6  ${color=="blue"?'border-black':'border-gray-300'}`}></button>}
+                  {Object.keys(variants).includes("green") && Object.keys(variants["green"]).includes(size) && <button onClick={()=>{refreshVariants(size , "green")}}  class={`border-2  bg-green-500 rounded-full w-6 h-6  ${color=="green"?'border-black':'border-gray-300'}`}></button>}
                 </div>
                 <div class="flex ml-6 items-center">
                   <span class="mr-3">Size</span>
                   <div class="relative">
-                    <select class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
-                      <option>SM</option>
-                      <option>M</option>
-                      <option>L</option>
-                      <option>XL</option>
+                    <select value={size} onChange={(e)=>{refreshVariants(e.target.value,color)}} class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
+                      {Object.keys(variants[color]).includes("S") && <option value={"S"}>S</option>}
+                      {Object.keys(variants[color]).includes("M") && <option value={"M"}>M</option>}
+                      {Object.keys(variants[color]).includes("L") && <option value={"L"}>L</option>}
+                      {Object.keys(variants[color]).includes("XL") && <option value={"XL"}>XL</option>}
                     </select>
                     <span class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
                       <svg
@@ -178,7 +191,7 @@ const onChangePin=(e)=>{
               </div>
               <div class="flex">
                 <span class="title-font font-medium text-2xl text-gray-900">
-                  $58.00
+                 {"₹"+product.price}
                 </span>
                 <button class="flex ml-8 text-white bg-indigo-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-indigo-600 rounded">
                   Buy Now
@@ -216,5 +229,28 @@ const onChangePin=(e)=>{
     </>
   );
 };
+
+export async function getServerSideProps(context){
+  if(!mongoose.connections[0].readyState){
+    await mongoose.connect(process.env.MONGO_URI)
+  }
+  let product = await Product.findOne({slug : context.query.slug})
+  let variants = await Product.find({title : product.title})
+  let colorSizeSlug = {}
+  for (let item of variants){
+    if(Object.keys(colorSizeSlug).includes(item.color)){
+      colorSizeSlug[item.color][item.size] = {slug:item.slug}
+    }
+    else{
+      colorSizeSlug[item.color] = {}
+      colorSizeSlug[item.color][item.size] = {slug : item.slug}
+    }
+  }
+
+  return{
+    props : {product:JSON.parse(JSON.stringify(product)),variants : JSON.parse(JSON.stringify(colorSizeSlug))
+    }
+  }
+}
 
 export default Post;
