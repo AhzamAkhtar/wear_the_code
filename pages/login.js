@@ -21,7 +21,7 @@ const login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {  email, password };
-    let res = await fetch("http://localhost:3001/api/login", {
+    let res = await fetch("http://localhost:3000/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
