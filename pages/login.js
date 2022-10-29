@@ -1,8 +1,77 @@
-import React from 'react'
+
 import Link from 'next/link'
+import React, { useState } from "react";
+import { useRouter } from 'next/router';
+import {toast , ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 const login = () => {
+  const router = useRouter()
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const handlerChange=(e)=>{
+   
+     if(e.target.name == 'email'){
+      setEmail(e.target.value)
+    }
+    else if(e.target.name == 'password'){
+      setPassword(e.target.value)
+    }
+  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {  email, password };
+    let res = await fetch("http://localhost:3001/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    let responce = await res.json();
+    console.log(responce);
+
+    setEmail("");
+    setPassword("");
+    if(responce.success){
+      
+      toast.success("Your Have Successfully Loged In",{
+        position : "bottom-left",
+        autoClose : 5000,
+        hideProgressBar : false,
+        closeOnClick : true,
+        pauseOnHover : true,
+        draggable : true,
+        progress : undefined
+      })
+      setTimeout(()=>{
+        router.push('http://localhost:3000')
+      },1000)
+    }
+    else{
+      toast.error("Wrong Credentials",{
+        position : "bottom-left",
+        autoClose : 5000,
+        hideProgressBar : false,
+        closeOnClick : true,
+        pauseOnHover : true,
+        draggable : true,
+        progress : undefined
+      })
+    }
+  };
   return (
     <div>
+    <ToastContainer
+    position="bottom-left"
+    autoClose = {5000}
+    hideProgressBar = {false}
+    newestOnTop = {false}
+    closeOnClick
+    rtl = {false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover/>
       <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div class="w-full max-w-md space-y-8">
     <div>
@@ -13,17 +82,17 @@ const login = () => {
         <Link href={"/signup"}><a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 mx-2">Sign Up </a></Link>
       </p>
     </div>
-    <form class="mt-8 space-y-6" action="#" method="POST">
+    <form onSubmit={handleSubmit} class="mt-8 space-y-6"  method="POST">
       <input type="hidden" name="remember" value="true"/>
       <div class="-space-y-px rounded-md shadow-sm">
       
         <div>
-          <label for="email-address" class="sr-only">Email address</label>
-          <input id="email-address" name="email" type="email" autocomplete="email" required class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Email address"/>
+          <label for="email" class="sr-only">Email address</label>
+          <input value={email} onChange={handlerChange} id="email" name="email" type="email" autocomplete="email" required class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Email address"/>
         </div>
         <div>
           <label for="password" class="sr-only">Password</label>
-          <input id="password" name="password" type="password" autocomplete="current-password" required class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Password"/>
+          <input value={password} onChange={handlerChange} id="password" name="password" type="password" autocomplete="current-password" required class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Password"/>
         </div>
       </div>
 
