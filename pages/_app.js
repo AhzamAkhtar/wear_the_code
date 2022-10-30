@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import Footer from '../Components/Footer'
 import Navbar from '../Components/Navbar'
 import '../styles/globals.css'
-
+import { useRouter } from 'next/router'
 function MyApp({ Component, pageProps }) {
   const [cart,setCart] = useState({})
   const [subTotal,setSubTotal] = useState(0)
-
+  const [user,setUser] = useState({value : null})
+  const [key,setKey] = useState(0)
+  const router = useRouter()
   useEffect(()=>{
     console.log("yyyy")
     try{
@@ -17,8 +19,13 @@ function MyApp({ Component, pageProps }) {
     }catch(error){
       console.log(error)
       localStorage.clear()
+    }
+    const token = localStorage.getItem("token")
+    if(token){
+      setUser({value:token})
+      setKey(Math.random())
     }     
-  },[])
+  },[router.query])
   const saveCart=(myCart)=>{
     localStorage.setItem("cart",JSON.stringify(myCart))
     let subt = 0
@@ -59,7 +66,7 @@ function MyApp({ Component, pageProps }) {
   }
 
   return (<>
-  <Navbar  cart={cart} addToCart={addToCart} removeFromCart={removeToCart} subTotal = {subTotal}  clearCart = {clearCart} />
+  <Navbar user={user}  key={key} cart={cart} addToCart={addToCart} removeFromCart={removeToCart} subTotal = {subTotal}  clearCart = {clearCart} />
   <Component  cart={cart} addToCart={addToCart} removeFromCart={removeToCart} subTotal = {subTotal} clearCart = {clearCart}  {...pageProps} />
   <Footer/>
   </>)

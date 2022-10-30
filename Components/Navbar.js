@@ -1,10 +1,10 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {MdOutlineShoppingCart,MdOutlineAccountCircle} from 'react-icons/md'
 import {AiFillCloseCircle,AiOutlinePlusCircle,AiOutlineMinusCircle} from 'react-icons/ai'
 import {BsFillBagCheckFill} from 'react-icons/bs'
-const Navbar = ({cart , addToCart, removeFromCart , clearCart , subTotal}) => {
+const Navbar = ({ user ,cart , addToCart, removeFromCart , clearCart , subTotal}) => {
   console.log(cart , addToCart, removeFromCart , clearCart , subTotal)
   const toggleCart=()=>{
     if(ref.current.classList.contains('translate-x-full')){
@@ -16,10 +16,12 @@ const Navbar = ({cart , addToCart, removeFromCart , clearCart , subTotal}) => {
       ref.current.classList.add('translate-x-full')
     }
   }
+  const [dropdown , setDropdown] = useState(false)
+  
   const ref = useRef()
   return (
    <div className='flex flex-col md:flex-row md:justify-start justify-center items-center my-2 shadow-xl'>
-    <div className='logo mx-5'>
+    <div className='logo mr-auto md:mx-5'>
     <a href='/'><Image src="/vercel.svg" width={50} height={50}
     /></a>
     </div>
@@ -32,9 +34,22 @@ const Navbar = ({cart , addToCart, removeFromCart , clearCart , subTotal}) => {
             <Link href={"/mugs"}><a><li>Mugs</li></a></Link>
         </ul>
     </div>
-    <div  className='cursor-pointer cart absolute top-2 right-0 mx-5 flex'>
-    <Link href={"/login"}><MdOutlineAccountCircle className='text-xl md:text-3xl mx-2' /></Link>
-       <MdOutlineShoppingCart onClick={toggleCart} className='text-xl md:text-3xl'/>
+    <div  className='cursor-pointer cart absolute  right-0 mx-5 flex'>
+    <a onMouseOver={()=>setDropdown(true)} onMouseLeave={()=> setDropdown(false)} >
+    {dropdown && <div className='absolute right-8 bg-pink-300 top-6 rounded-md px-5 w-36'>
+      <ul>
+        <Link href=""><a><li className='py-1 hover:text-pink-400 text-sm'>My Account</li> </a></Link>
+        <Link href=""><a><li className='py-1 hover:text-pink-400 text-sm'>Orders</li></a></Link>
+        <Link href=""><a><li className='py-1 hover:text-pink-400 text-sm'>Logout</li></a></Link>
+        
+      </ul>
+    </div>}
+    {user.value && 
+    <Link href={"/login"}><MdOutlineAccountCircle  className='text-xl md:text-3xl mx-2' /></Link>}</a>
+    {!user.value && <Link href={'/login'}><a>
+      <button className='bg-blue-500 px-2 py-1 rounded-md text-sm text-white mx-2'>Login</button>
+    </a></Link>}
+       <MdOutlineShoppingCart onClick={toggleCart} className='text-xl md:text-3xl items-center'/>
     </div>
     <div ref={ref} className={`w-72 h-full sideCart fixed top-0 right-0 bg-pink-100 px-8 py-10 transform transition-transform 
     
