@@ -45,7 +45,7 @@ const login = () => {
         progress : undefined
       })
       setTimeout(()=>{
-        router.push('http://localhost:3000')
+        router.push('http://localhost:3002')
       },1000)
     }
     else{
